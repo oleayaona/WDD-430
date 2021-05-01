@@ -1,0 +1,11 @@
+h3 {
+    font-size: 1.4em;
+    margin: 10px;
+}
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.btn {
+    margin: 5px;
+}
