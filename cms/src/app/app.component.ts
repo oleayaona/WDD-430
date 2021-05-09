@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cms';
+  // Initialize documents to be the first page displayed
+  selectedFeature = 'documents';
+
+  switchView(feature: string) {
+    this.selectedFeature = feature;
+  }
+
+
 }
