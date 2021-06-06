@@ -34,6 +34,19 @@ export class ContactService {
     return null;
   }
 
+  getMaxId(): number {
+    let maxId: number = 0;
+  
+    for (let contact of this.contacts) {
+      let currentId = +contact.id;
+      if (currentId > maxId) {
+        maxId = currentId;
+      }
+    
+    return maxId;
+  }
+}
+    
   addContact(newContact: Contact) {
     if (!newContact) {
       return;
