@@ -12,6 +12,8 @@ export class DocumentService {
   documentListChangedEvent = new Subject<Document[]>();
   maxDocumentId: number;
 
+  startedEditing = new Subject<number>();
+
   documents: Document[] = [];
 
   constructor() { 
