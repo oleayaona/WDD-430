@@ -9,7 +9,7 @@ export const MOCKCONTACTS: Contact[] = [
     email: 'barzeer@byui.edu',
     phone: '208-496-3768',
     imageUrl: '../../assets/images/barzeer.jpg',
-    group: null
+    group: []
   },
   // index 1
   {

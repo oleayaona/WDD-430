@@ -14,6 +14,12 @@
                 <li><strong>Phone:</strong> {{ contact.phone }}</li>
             </ul>
         </div>
+
+        <div class="panel-body">
+            <div *ngFor="let contact of contact.group; let i = index">
+              <cms-contact-item class="col-sm-11" [contact]="contact"></cms-contact-item>
+            </div>
+        </div>
     
     </div>
 </div>
