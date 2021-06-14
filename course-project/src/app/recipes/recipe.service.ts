@@ -1,11 +1,13 @@
 import { Injectable} from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import { Subject } from 'rxjs';
 
 import { Recipe } from './recipe.model';
 
 @Injectable()
 export class RecipeService {
+    recipesListChanged = new Subject<Recipe[]>();
 
     private recipes: Recipe[] = [
         new Recipe(
@@ -14,7 +16,8 @@ export class RecipeService {
             `https://www.maxpixel.net/static/photo/640/Italian-Tomato-Sauces-Noodles-Pasta-Spaghetti-4406130.jpg`,
             [
                 new Ingredient('Pasta', 1),
-                new Ingredient('Tomato', 6)
+                new Ingredient('Tomato', 6),
+                new Ingredient('Cheese', 3),
             ]),
         new Recipe(
             'Italian Tiramisu', 
@@ -39,6 +42,21 @@ export class RecipeService {
 
     getRecipe(index: number) {
         return this.recipes[index]
+    }
+
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+        this.recipesListChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index: number, newRecipe: Recipe) {
+        this.recipes[index] = newRecipe;
+        this.recipesListChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index: number) {
+        this.recipes.splice(index, 1)
+        this.recipesListChanged.next(this.recipes.slice());
     }
 
 }
