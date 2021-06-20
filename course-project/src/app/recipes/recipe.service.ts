@@ -9,27 +9,35 @@ import { Recipe } from './recipe.model';
 export class RecipeService {
     recipesListChanged = new Subject<Recipe[]>();
 
-    private recipes: Recipe[] = [
-        new Recipe(
-            'Tomato Noodles', 
-            'Easy noodles', 
-            `https://www.maxpixel.net/static/photo/640/Italian-Tomato-Sauces-Noodles-Pasta-Spaghetti-4406130.jpg`,
-            [
-                new Ingredient('Pasta', 1),
-                new Ingredient('Tomato', 6),
-                new Ingredient('Cheese', 3),
-            ]),
-        new Recipe(
-            'Italian Tiramisu', 
-            'Yummy dessert!', 
-            `https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Tiramisu_with_blueberries_and_raspberries%2C_July_2011.jpg/1200px-Tiramisu_with_blueberries_and_raspberries%2C_July_2011.jpg`,
-            [
-                new Ingredient('Egg', 6),
-                new Ingredient('Cream', 2)
-            ])
-      ];
+    // private recipes: Recipe[] = [
+    //     new Recipe(
+    //         'Tomato Noodles', 
+    //         'Easy noodles', 
+    //         `https://www.maxpixel.net/static/photo/640/Italian-Tomato-Sauces-Noodles-Pasta-Spaghetti-4406130.jpg`,
+    //         [
+    //             new Ingredient('Pasta', 1),
+    //             new Ingredient('Tomato', 6),
+    //             new Ingredient('Cheese', 3),
+    //         ]),
+    //     new Recipe(
+    //         'Italian Tiramisu', 
+    //         'Yummy dessert!', 
+    //         `https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Tiramisu_with_blueberries_and_raspberries%2C_July_2011.jpg/1200px-Tiramisu_with_blueberries_and_raspberries%2C_July_2011.jpg`,
+    //         [
+    //             new Ingredient('Egg', 6),
+    //             new Ingredient('Cream', 2)
+    //         ])
+    //   ];
+
+    private recipes: Recipe[] = [];
 
     constructor(private shoppingListService: ShoppingListService) {}
+
+    // for fetching recipes from firebase
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipesListChanged.next(this.recipes.slice());
+    }
 
     getRecipes() {
         return this.recipes.slice();
