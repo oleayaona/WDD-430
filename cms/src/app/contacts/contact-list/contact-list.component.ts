@@ -11,10 +11,16 @@ import { ContactService } from '../contact.service';
 export class ContactListComponent implements OnInit, OnDestroy {
   // @Output() contactSelected = new EventEmitter<Contact>();
   subscription: Subscription;
+  term: string;
 
   contacts: Contact[] = [];
 
   constructor(private contactService: ContactService) { }
+
+  // Gets search string from input
+  search(value: string) {
+    this.term = value;
+  }
 
   ngOnInit(): void {
     this.contacts = this.contactService.getContacts();
