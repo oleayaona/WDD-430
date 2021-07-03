@@ -21,7 +21,7 @@ export class ContactService {
   }
 
   getContacts(): Contact[] {
-    this.http.get('https://cms-project-63929-default-rtdb.firebaseio.com/contacts.json')
+    this.http.get('http://localhost:3000/contacts')
     .subscribe(
       (contacts: Contact[]) => {
         this.contacts = contacts
@@ -76,11 +76,24 @@ export class ContactService {
     if (!newContact) {
       return;
     }
-    this.maxContactId++;
-    newContact.id = this.maxContactId.toString();
-    this.contacts.push(newContact);
-    // this.contactListChangedEvent.next(this.contacts.slice());
-    this.storeContacts();
+    // make sure id of the new object is empty
+    newContact.id = '';
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // add to database
+    this.http.post<{ message: string, contact: Contact }>('http://localhost:3000/contacts',
+    newContact,
+    { headers: headers })
+    .subscribe(
+      (responseData) => {
+        console.log(responseData.message);
+        // add new document to documents
+        this.contacts.push(responseData.contact);
+        this.contacts.sort();
+        this.contactListChangedEvent.next(this.contacts.slice());
+      }
+    );
   }
   
   updateContact(originalContact: Contact, newContact: Contact) {
@@ -89,14 +102,25 @@ export class ContactService {
       }
   
     let pos = this.contacts.indexOf(originalContact);
+
     if (pos < 0) {
       return;
     }
   
     newContact.id = originalContact.id;
-    this.contacts[pos] = newContact;
-    // this.contactListChangedEvent.next(this.contacts.slice());
-    this.storeContacts();
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // update database
+   this.http.put('http://localhost:3000/contacts/' + originalContact.id,
+   newContact, { headers: headers })
+   .subscribe(
+     (response: Response) => {
+       this.contacts[pos] = newContact;
+       this.contacts.sort();
+       this.contactListChangedEvent.next(this.contacts.slice());
+     }
+   );
   }
   
   deleteContact(contact: Contact) { 
@@ -107,9 +131,16 @@ export class ContactService {
    if (pos < 0) {
       return;
    }
-   this.contacts.splice(pos, 1);
-   // this.contactListChangedEvent.next(this.contacts.slice());
-   this.storeContacts();
+
+   // delete from database
+   this.http.delete('http://localhost:3000/contacts/' + contact.id)
+     .subscribe(
+       (response: Response) => {
+         this.contacts.splice(pos, 1);
+         this.contacts.sort();
+         this.contactListChangedEvent.next(this.contacts.slice());
+       }
+     );
 
   }
 
