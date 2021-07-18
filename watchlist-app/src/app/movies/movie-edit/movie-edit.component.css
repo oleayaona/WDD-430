@@ -1,0 +1,46 @@
+
+.required.ng-invalid.ng-touched {
+    border: 2px solid #cf4826;
+  }
+  
+  .invalid.ng-invalid.ng-dirty {
+    border: 2px solid #cf4826;
+  }
+  
+  .pad-left-right{
+    padding-left:.1rem;
+  }
+  
+  .deleteButton {
+    margin-top: 1.5rem;
+    margin-left: -1.2rem;
+    width: 3.4rem;
+  }
+  
+  .buttonDiv {
+    margin-top: 1.5rem;
+  }
+  
+  .groupDiv {
+    min-height: 6rem;
+    border: solid thin lightgrey;
+  }
+  
+.panel-body {
+  background-color: #f7eee8;
+  border: 2px solid #7c705c;
+}
+
+.form-control {
+  border: 2px solid #7c705c;
+}
+
+.delete-btn {
+  border: 2px solid #7c705c;
+  background-color: white;
+}
+
+.edit-btn {
+  background-color: #473f31;
+  color: white;
+}

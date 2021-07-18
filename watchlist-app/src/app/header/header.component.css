@@ -1,0 +1,20 @@
+.nav {
+    background-color: #f7eee8;
+    border: none;
+    padding: 20px 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+.navbar-default .navbar-brand {
+    font-size: 2.1em;
+    color: #5f533f;
+}
+
+.center {
+    margin: auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,14 @@
+.list-group-item {
+    border-radius: 0;
+    background-color: #f7eee8;
+    color: #5f533f;
+}
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    border-radius: 0;
+    color: #5f533f;
+    border-color: #5f533f;
+}
+
+.list-group-item.active, .list-group-item.active:focus {
+    background-color: #e4dbd5;
+}

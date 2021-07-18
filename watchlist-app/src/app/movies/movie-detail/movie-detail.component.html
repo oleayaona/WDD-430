@@ -1,0 +1,18 @@
+<div class="movie-detail-component row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>{{ movie.title }}</h3>
+            <img [src]="movie.imageUrl" alt="" class="img-responsive">
+        </div>
+        <div class="panel-body">
+            <ul style="list-style: none; padding: 0px">
+                <li><strong>Year:</strong> {{ movie.year }}</li>
+                <li><strong>Notes:</strong> {{ movie.description }}</li>
+            </ul>
+            <span style="display: flex; justify-content: flex-start;">
+                <button [routerLink]="['edit']" class="btn edit-btn" type="button">Edit</button>
+                 <button (click)="onDelete()" class="btn delete-btn" type="button">Delete</button>
+            </span>
+        </div>
+    </div>
+</div>

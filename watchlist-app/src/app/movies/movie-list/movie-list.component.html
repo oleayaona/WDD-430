@@ -1,0 +1,25 @@
+<div class="movie-list panel panel-default">
+    <div class="panel-heading">
+      <div class="flex">
+        <h3 class="title pad-left-right">Movies to watch</h3>
+        <a class="add-btn btn glyphicon glyphicon-plus" [routerLink]="['new']"></a>
+      </div>
+      
+      <div class="row" style="padding: 0px 10px;">
+        <!-- <div class="input-group pull-left pad-left-right col-xs-7">
+          <input #searchBox type="text" (keyup)="search(searchBox.value)" class="form-control" placeholder="Enter a search value">
+          <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
+        </div> -->
+      </div>
+    </div>
+  
+    <div class="background-color panel-body">
+      <div class="col-xs-12 movie-list-item">
+        <app-movie-item 
+          *ngFor="let oneMovie of movies" 
+          [movie]="oneMovie"
+        ></app-movie-item>
+      </div>
+    </div>
+  </div>
+  

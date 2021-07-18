@@ -1,0 +1,35 @@
+.panel-heading {
+    background-color: #f7eee8;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom: 2px solid #7c705c;
+}
+
+.panel-body {
+    padding: 0;
+}
+
+.movie-list {
+    border: 2px solid #7c705c;
+}
+
+.movie-list-item {
+    padding: 0;
+}
+
+.add-btn {
+    background-color: #473f31;
+    color: white;
+    font-size: 2em;
+}
+
+.add-btn:hover {
+    background-color: #363026;
+}
+
+.flex {
+    justify-content: space-between;
+}
+
+.background-color {
+    background-color: #f7eee8;
+}
